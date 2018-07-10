@@ -1,6 +1,8 @@
 <div class="form-group row ynamic-field form-input" [formGroup]="group">
   <label class="col-sm-2 col-form-label">{{ config.label }}:</label>
-  <div class="col-sm-6">
+  <div class="nameContainer col-sm-6 ">
+    <p>作业负责人负责管理这个作业的所有内容</p>
     <input type="text" [attr.placeholder]="config.placeholder" [formControlName]="config.name">
+    <i class="icon iconfont icon-sousuo"></i>
   </div>
 </div>

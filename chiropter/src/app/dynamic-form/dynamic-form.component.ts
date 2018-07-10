@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Input, Output, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, Output, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { FieldConfig } from './models/field-config.interface';
 
@@ -19,14 +19,15 @@ export class DynamicFormComponent implements OnInit, OnChanges {
   form: FormGroup;
 
 
-  get controls() { return this.config.filter(({ type }) => type !== 'button'); }
+  get controls() { return this.config.filter(({type}) => type !== 'button'); }
   get changes() { return this.form.valueChanges; }
   get valid() { return this.form.valid; }
   get value() { return this.form.value; }
 
   constructor(
     private fb: FormBuilder
-  ) { }
+  ) {
+   }
 
   ngOnInit() {
     this.form = this.createGroup();
@@ -38,16 +39,15 @@ export class DynamicFormComponent implements OnInit, OnChanges {
       const configControls = this.controls.map((item) => item.name);
 
       controls
-      .filter((control) => !configControls.includes(control))
-      .forEach((control) => this.form.removeControl(control));
+        .filter((control) => !configControls.includes(control))
+        .forEach((control) => this.form.removeControl(control));
 
       configControls
-      .filter((control) => !controls.includes(control))
-      .forEach((name) => {
-        const config = this.config.find((control) => control.name === name);
-        this.form.addControl(name, this.createControl(config));
-      });
-
+        .filter((control) => !controls.includes(control))
+        .forEach((name) => {
+          const config = this.config.find((control) => control.name === name);
+          this.form.addControl(name, this.createControl(config));
+        });
     }
   }
 

@@ -1,0 +1,22 @@
+<div class="form-group row ynamic-field form-input" [formGroup]="group">
+  <label class="col-sm-2 col-form-label">{{ config.label }}:</label>
+  <div class="checkbox-body col-sm-6">
+    <!-- <input type="text" [attr.placeholder]="config.placeholder" [formControlName]="config.name"> -->
+    <div class="interval">
+      <input type="checkbox" class="checkbox">
+      <span>在截止时间前，收集到</span>
+      <input type="text" class="text">
+      <span>份问卷后停止收集</span>
+    </div>
+    <div class="interval">
+      <input type="checkbox" class="checkbox">
+      <span>设置为匿名问卷</span>
+      <span class="small">设置为匿名问卷后，调查报告中将不显示问卷填写者的姓名和账号</span>
+    </div>
+    <div class="interval">
+      <input type="checkbox" class="checkbox">
+      <span>公开调查报告</span>
+      <span class="small">公开调查结果后，参与答卷的学员将可在问卷截止后查看调查报告</span>
+    </div>
+  </div>
+</div>

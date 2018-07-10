@@ -1,14 +1,37 @@
-import { OnChanges, OnInit, ComponentRef, Input, Directive, Type, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+
+import { FormButtonComponent } from './form-button/form-button.component';
+import { FormInputComponent } from './form-input/form-input.component';
+import { FormSelectComponent } from './form-select/form-select.component';
+import { FormTypeRadioComponent } from './form-type-radio/form-type-radio.component';
+import { FormDutyPeopleComponent } from './form-duty-people/form-duty-people.component';
+import { FormSelectTwoComponent } from './form-select-two/form-select-two.component';
+import { FormImgUplodaComponent } from './form-img-uploda/form-img-uploda.component';
+import { FormDeadlineComponent } from './form-deadline/form-deadline.component';
+import { FormTextareaComponent } from './form-textarea/form-textarea.component';
+import { FormCheckboxComponent } from './form-checkbox/form-checkbox.component';
+import { FormInputUserComponent } from './form-input-user/form-input-user.component';
+import { FormInputPasswordComponent } from './form-input-password/form-input-password.component';
+import { FormInputRememberComponent } from './form-input-remember/form-input-remember.component';
+
 import { Field } from '../models/field.interface';
 import { FieldConfig } from '../models/field-config.interface';
 
-import { FormInputComponent } from './form-input/form-input.component';
-import { FormButtonComponent } from './form-button/form-button.component';
-
 const components: { [type: string]: Type<Field> } = {
-  input: FormInputComponent,
   button: FormButtonComponent,
+  input: FormInputComponent,
+  select: FormSelectComponent,
+  typeRadio: FormTypeRadioComponent,
+  dutyPeople: FormDutyPeopleComponent,
+  selectTwo: FormSelectTwoComponent,
+  imgUploda: FormImgUplodaComponent,
+  deadline: FormDeadlineComponent,
+  textarea: FormTextareaComponent,
+  checkout: FormCheckboxComponent,
+  inputUser: FormInputUserComponent,
+  inputPass: FormInputPasswordComponent,
+  inputRemember: FormInputRememberComponent
 };
 
 @Directive({
@@ -24,26 +47,9 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
   component: ComponentRef<Field>;
 
   constructor(
-    private resolver: ComponentFactoryResolver,       /*  动态创建组件 */
+    private resolver: ComponentFactoryResolver,
     private container: ViewContainerRef
-  ) {
-  }
-
-  // 运维/* 笔记 */
-  ngOnInit() {
-    if (!components[this.config.type]) {
-      const supportedTypes = Object.keys(components).join(', ');
-      throw new Error(
-        `Trying to use an unsupported type (${this.config.type}).Supported types: ${supportedTypes}`
-      );
-    }
-
-    const component = this.resolver.resolveComponentFactory<Field>(components[this.config.type]);
-    this.component = this.container.createComponent(component);
-
-    this.component.instance.config = this.config;
-    this.component.instance.group = this.group;
-  }
+  ) { }
 
   ngOnChanges() {
     if (this.component) {
@@ -52,10 +58,18 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
     }
   }
 
+  ngOnInit() {
+    if (!components[this.config.type]) {
+      const supportedTypes = Object.keys(components).join(', ');
+      throw new Error(
+        `Trying to use an unsupported type (${this.config.type}).
+        Supported types: ${supportedTypes}`
+      );
+    }
+    const component = this.resolver.resolveComponentFactory<Field>(components[this.config.type]);
+    this.component = this.container.createComponent(component);
+    this.component.instance.config = this.config;
+    this.component.instance.group = this.group;
+  }
 
 }
-/**
-在我们定义 createComponent() 方法前，我们需要注入 ComponentFactoryResolver 服务对象。
-该 ComponentFactoryResolver 服务对象中，提供了一个很重要的方法 - resolveComponentFactory() ，
-该方法接收一个组件类作为参数，并返回 ComponentFactory 。
- */

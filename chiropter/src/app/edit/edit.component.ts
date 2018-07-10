@@ -17,7 +17,17 @@ export class EditComponent implements OnInit, AfterViewInit {
       label: '用户名',
       name: 'name',
       placeholder: '请输入你的用户名',
-      validation: [Validators.required, Validators.minLength(4)]
+      disabled: false,
+      validation: [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(32)
+      ],
+      validationMessages: [
+        { 'minlength': '用户名长度最少为3个字符' },
+        { 'maxlength': '用户名长度最多为10个字符' },
+        { 'required': '请填写用户名' }
+      ]
     },
     {
       label: '提交',
@@ -25,6 +35,7 @@ export class EditComponent implements OnInit, AfterViewInit {
       type: 'button'
     }
   ];
+
 
   ngAfterViewInit() {
     let previousValid = this.form.valid;

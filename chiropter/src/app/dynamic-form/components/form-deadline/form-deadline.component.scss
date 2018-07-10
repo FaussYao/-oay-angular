@@ -1,0 +1,24 @@
+.deadline-container {
+  margin: 10px auto;
+  input {
+    margin-left: 10px;
+  }
+  select {
+    margin-left: 10px;
+  }
+  .makeup-gui {
+    padding: 0;
+    margin-top: 10px;
+  }
+}
+
+.small-ball {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  background: #999999;
+  color: black;
+  margin-right: 5px;
+}

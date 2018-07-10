@@ -1,0 +1,18 @@
+<div class="form-group row task-type d-flex" [formGroup]="group">
+  <label class="col-sm-2" for="taskType">{{ config.label }}:</label>
+  <div class="col-sm-8 d-flex">
+    <ng-container *ngFor="let option of config.options; let i = index;" >
+      <div class="d-flex" (click)="optionFunc(i)">
+        <div class="ball" [class.active]="taskTypeFlag === i">
+          <i class="iconfont icon-danduduihao"></i>
+        </div>
+        <div class="type" [class.active]="taskTypeFlag === i">{{ option }}</div>
+      </div>
+    </ng-container>
+
+    <div class="d-flex small-ball-container align-items-center">
+      <div class="small-ball">?</div>
+      <div>{{ config.placeholder }}</div>
+    </div>
+  </div>
+</div>

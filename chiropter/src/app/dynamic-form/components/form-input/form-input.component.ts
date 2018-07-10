@@ -1,5 +1,7 @@
+
 import { Component, ViewContainerRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+
 import { Field } from '../../models/field.interface';
 import { FieldConfig } from '../../models/field-config.interface';
 
@@ -9,7 +11,6 @@ import { FieldConfig } from '../../models/field-config.interface';
   styleUrls: ['./form-input.component.scss']
 })
 export class FormInputComponent implements Field {
-
   config: FieldConfig;
   group: FormGroup;
 

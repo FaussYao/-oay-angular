@@ -1,6 +1,6 @@
 <div class="form-group row ynamic-field form-input" [formGroup]="group">
   <label class="col-sm-2 col-form-label">{{ config.label }}:</label>
   <div class="col-sm-6">
-    <input type="text" [attr.placeholder]="config.placeholder" [formControlName]="config.name">
+    <textarea [attr.placeholder]="config.placeholder" rows="10" cols="60" [formControlName]="config.name"></textarea>
   </div>
 </div>

@@ -1,0 +1,15 @@
+<div class="image-upload row" [formGroup]="group">
+  <label class="col-sm-2">{{ config.label }}:</label>
+  <div class="col-sm-8">
+    <p>{{ config.placeholder }}</p>
+    <div class="image-style" (click)="imageClick($event)">
+      <span [hidden]="!!isHaveImg">点击上传图片</span>
+      <ng-container *ngTemplateOutlet="isHaveImg ? imgFlag : '' ">
+      </ng-container>
+      <ng-template #imgFlag>
+        <img src="{{picUrl}}" (change)="hidePic()">
+      </ng-template>
+    </div>
+    <input type="file" style="display: none" (change)="selectedFileOnChanged()" [formControlName]="config.name" #imgUpload />
+  </div>
+</div>
