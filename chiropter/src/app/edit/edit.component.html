@@ -1,0 +1,5 @@
+<app-dynamic-form [config]="config" 
+   #form="appDynamicForm" 
+   (submit)="submit($event)">
+</app-dynamic-form>
+{{ form.valid}} {{form.valid | json}}
