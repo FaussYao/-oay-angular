@@ -1,0 +1,14 @@
+.date-start-input, .date-end-input {
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+  label {
+    margin-right: 4px;
+  }
+  input {
+    height: 24px;
+    border: 1px solid #CCCCCC;
+    font-size: 12px;
+    min-width: 146px;
+  }
+}
